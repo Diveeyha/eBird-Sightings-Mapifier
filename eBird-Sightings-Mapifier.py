@@ -3,7 +3,6 @@ import pandas as pd
 import folium
 # from datetime import date, timedelta
 from streamlit_folium import st_folium
-lat, lng = 37.238947, -76.745847
 
 
 @st.cache_resource
