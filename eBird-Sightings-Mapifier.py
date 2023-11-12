@@ -5,7 +5,6 @@ import folium
 from streamlit_folium import st_folium
 
 
-@st.cache_resource
 def map_call(data):
     # If smaller radius map, else larger map
     # figure = folium.Figure(width="100%", height="50%")
