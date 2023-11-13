@@ -1,13 +1,7 @@
 import streamlit as st
 import pandas as pd
 import folium
-import os
-import pathlib
-from os import listdir
-from os.path import isfile, join
-# from datetime import date, timedelta
 from streamlit_folium import st_folium
-lat, lng = 37.238947, -76.745847
 
 
 def map_call(data):
@@ -27,26 +21,6 @@ def plot_markers(point, _figure_map):
     _figure_map.add_child(marker)
 
 
-# def save_uploadedfile(uploadedfile):
-#    with open(os.path.join("tempDir", uploadedfile.name), "wb") as f:
-#        f.write(uploadedfile.getbuffer())
-#    return st.success("Saved File:{} to tempDir".format(uploadedfile.name))
-
-
-def upload(uploaded_file):
-    if uploaded_file is None:
-        st.session_state["upload_state"] = "Upload a file first!"
-    else:
-        data = uploaded_file.getvalue().decode('utf-8')
-        parent_path = pathlib.Path(__file__).parent.parent.resolve()
-        save_path = os.path.join(parent_path, "data")
-        complete_name = os.path.join(save_path, uploaded_file.name)
-        destination_file = open(complete_name, "w", encoding='utf-8')
-        destination_file.write(data)
-        destination_file.close()
-        st.session_state["upload_state"] = "Saved " + complete_name + " successfully!"
-
-
 def main():
     # Page label and headers
     st.set_page_config(layout='wide')
@@ -56,30 +30,10 @@ def main():
         "[https://ebird.org/downloadMyData](https://ebird.org/downloadMyData)")
     # st.text('By: Michelle G - November 12, 2023')
 
-    # holder = st.empty()
-    # holder.empty()
-
-    st.write("""
-    # File Picker
-    """)
     uploaded_file = st.file_uploader("Upload your CSV file downloaded from eBird", type=['csv'])
     if uploaded_file is not None:
         df = pd.read_csv(uploaded_file)
         df.columns = df.columns.str.replace(' ', '_')
-
-        st.write("CSV Preview")
-        st.dataframe(df.head(5), hide_index=True, use_container_width=True)
-
-        upload_state = st.text_area("Upload State", "", key="upload_state")
-        st.button("Upload file", on_click=upload, args=[uploaded_file])
-
-        parent_path = pathlib.Path(__file__).parent.resolve()
-        data_path = os.path.join(parent_path, "data")
-        onlyfiles = [f for f in listdir(data_path) if isfile(join(data_path, f))]
-        option = st.sidebar.selectbox('Pick a dataset', onlyfiles)
-        file_location = os.path.join(data_path, option)
-
-        # use `file_location` as a parameter to the main script
 
         with st.sidebar:
             options = sorted(df['Common_Name'].unique())
