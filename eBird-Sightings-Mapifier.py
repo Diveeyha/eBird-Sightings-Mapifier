@@ -45,9 +45,6 @@ def main():
         df = df.loc[df['Common_Name'] == st.session_state.user_choice]
 
         complete_map = map_call(df)
-        complete_map.save('complete_map.html')
-        import webbrowser
-        webbrowser.open('complete_map.html')
         #st_data = st_folium(complete_map, width = 725)  # width=700, height=500
 
 
@@ -61,4 +58,4 @@ def main():
 if __name__ == "__main__":
     main()
 
-# st.session_state
+st.session_state
