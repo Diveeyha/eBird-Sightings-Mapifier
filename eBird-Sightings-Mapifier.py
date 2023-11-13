@@ -10,7 +10,6 @@ from streamlit_folium import st_folium
 lat, lng = 37.238947, -76.745847
 
 
-@st.cache_resource
 def map_call(data):
     # If smaller radius map, else larger map
     # figure = folium.Figure(width="100%", height="50%")
