@@ -1,4 +1,4 @@
 pandas
 streamlit
-streamlit-folium==0.13.0
+streamlit_folium==0.13.0
 folium
