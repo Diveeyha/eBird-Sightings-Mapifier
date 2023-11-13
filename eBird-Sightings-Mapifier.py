@@ -6,7 +6,7 @@ import pathlib
 from os import listdir
 from os.path import isfile, join
 # from datetime import date, timedelta
-from streamlit-folium import st_folium
+from streamlit_folium import st_folium
 lat, lng = 37.238947, -76.745847
 
 
