@@ -28,6 +28,7 @@ def main():
     # Page label and headers
     st.set_page_config(layout='wide')
     st.header('eBird Sightings Mapifier')
+    st.caption("Download your data from ebird at this link: [https://ebird.org/downloadMyData](https://ebird.org/downloadMyData)")
     # st.text('By: Michelle G - November 12, 2023')
 
     holder = st.empty()
