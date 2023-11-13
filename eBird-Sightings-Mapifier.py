@@ -45,13 +45,11 @@ def main():
         df = df.loc[df['Common_Name'] == st.session_state.user_choice]
 
         complete_map = map_call(df)
-        st_data = st_folium(complete_map, width = 725)  # width=700, height=500
-        make_map_responsive = """
-         <style>
-         [title~="st.iframe"] {width: 100%}
-         </style>
-        """
-        st.markdown(make_map_responsive, unsafe_allow_html=True)
+        complete_map.save('complete_map.html')
+        import webbrowser
+        webbrowser.open('complete_map.html')
+        #st_data = st_folium(complete_map, width = 725)  # width=700, height=500
+
 
         with st.expander("Table"):
             if st.session_state.user_choice is not None:
