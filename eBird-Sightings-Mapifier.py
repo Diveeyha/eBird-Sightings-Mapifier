@@ -9,7 +9,7 @@ from streamlit_folium import st_folium
 def map_call(data):
     # If smaller radius map, else larger map
     # figure = folium.Figure(width="100%", height="50%")
-    figure_map = folium.Map(location=[37, -102], zoom_start=2)
+    figure_map = folium.Map(location=[37, -102], zoom_start=2, scrollWheelZoom=False)
 
     # Markers then plot map
     data[::-1].apply(plot_markers, axis=1, args=(figure_map,))
@@ -45,12 +45,18 @@ def main():
         df = df.loc[df['Common_Name'] == st.session_state.user_choice]
 
         complete_map = map_call(df)
-        st_folium(complete_map, height=350)  # width=700, height=500
+        st_folium(complete_map)  # width=700, height=500
+        make_map_responsive = """
+         <style>
+         [title~="st.iframe"] {width: 100%}
+         </style>
+        """
+        st.markdown(make_map_responsive, unsafe_allow_html=True)
 
         with st.expander("Table"):
             if st.session_state.user_choice is not None:
-                st.table(df[['Submission_ID', 'Common_Name', 'Count', 'State/Province',
-                             'County', 'Location', 'Date', 'Time']])
+                st.dataframe(df[['Submission_ID', 'Common_Name', 'Count', 'State/Province',
+                             'County', 'Location', 'Date', 'Time']], hide_index=True, use_container_width=True)
 
 
 # Run main
