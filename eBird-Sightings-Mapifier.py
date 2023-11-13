@@ -9,8 +9,7 @@ from streamlit_folium import st_folium
 def map_call(data):
     # If smaller radius map, else larger map
     # figure = folium.Figure(width="100%", height="50%")
-    figure_map = folium.Map(location=[0, 0], zoom_start=1, scrollWheelZoom=False, width='100%',
-                            height='5%')  # .add_to(figure)
+    figure_map = folium.Map(location=[37, -102], zoom_start=2)
 
     # Markers then plot map
     data[::-1].apply(plot_markers, axis=1, args=(figure_map,))
