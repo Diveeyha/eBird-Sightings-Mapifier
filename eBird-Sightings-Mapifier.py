@@ -8,7 +8,10 @@ def map_call(data):
     # If smaller radius map, else larger map
     # figure = folium.Figure(width="100%", height="50%")
     figure_map = folium.Map(location=[37, -102], zoom_start=2, scrollWheelZoom=False)  # .add_to(figure)
-
+    
+    # add Openstreetmap layer
+    folium.TileLayer('openstreetmap', name='OpenStreet Map').add_to(figure_map)
+    
     # Markers then plot map
     data[::-1].apply(plot_markers, axis=1, args=(figure_map,))
     return figure_map
