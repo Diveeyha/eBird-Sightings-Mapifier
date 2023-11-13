@@ -74,7 +74,7 @@ def main():
         upload_state = st.text_area("Upload State", "", key="upload_state")
         st.button("Upload file", on_click=upload, args=[uploaded_file])
 
-        parent_path = pathlib.Path(__file__).parent.parent.resolve()
+        parent_path = pathlib.Path(__file__).parent.resolve()
         data_path = os.path.join(parent_path, "data")
         onlyfiles = [f for f in listdir(data_path) if isfile(join(data_path, f))]
         option = st.sidebar.selectbox('Pick a dataset', onlyfiles)
