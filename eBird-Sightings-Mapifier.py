@@ -10,7 +10,7 @@ def map_call(data):
     figure_map = folium.Map(location=[37, -102], zoom_start=2, scrollWheelZoom=False)  # .add_to(figure)
     
     # add Openstreetmap layer
-    folium.TileLayer('openstreetmap', name='OpenStreet Map').add_to(figure_map)
+    #folium.TileLayer('openstreetmap', name='OpenStreet Map').add_to(figure_map)
     
     # Markers then plot map
     data[::-1].apply(plot_markers, axis=1, args=(figure_map,))
@@ -45,7 +45,7 @@ def main():
         df = df.loc[df['Common_Name'] == st.session_state.user_choice]
 
         complete_map = map_call(df)
-        st_data = st.pydeck_chart(complete_map)  # width=700, height=500
+        st_data = st.map(complete_map)  # width=700, height=500
 
         with st.expander("Table"):
             if st.session_state.user_choice is not None:
