@@ -89,7 +89,7 @@ def main():
         df = df.loc[df['Common_Name'] == st.session_state.user_choice]
 
         complete_map = map_call(df)
-        folium_static(complete_map)  # width=700, height=500
+        st_data = st.folium(complete_map)  # width=700, height=500
         make_map_responsive = """
          <style>
          [title~="st.iframe"] {width: 100%}
