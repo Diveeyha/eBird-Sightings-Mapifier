@@ -2,4 +2,3 @@ pandas
 folium
 streamlit
 streamlit_folium
-streamlit-folium
